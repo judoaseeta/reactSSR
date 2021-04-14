@@ -4,15 +4,16 @@
   "description": "React SSR Boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build:dev && node ./dist/server.js",
-    "start:dev": "webpack-dev-server --env=dev --profile --colors",
+    "start": "NODE_ENV=production node dist/index.js",
+    "dev": "webpack-dev-server --env=dev --profile --colors",
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "rm -rf dist/ && NODE_ENV=production npm run build:client && NODE_ENV=production npm run build:server",
+    "link": "npm link webpack",
+    "build": "rm -rf dist/ && npm run build:client && npm run build:server",
     "build:dev": "rm -rf dist/ && NODE_ENV=development npm run build:client && NODE_ENV=development npm run build:server",
-    "build:server": "webpack --env=server --progress --profile --colors",
-    "build:client": "webpack --env=client --progress --profile --colors",
-    "storybook": "start-storybook -p 6006",
+    "build:server": "NODE_ENV=production webpack --env=server --progress --profile --colors",
+    "build:client": "NODE_ENV=production webpack --env=client --progress --profile --colors",
+    "storybook": "start-storybook ./assets -p 6006",
     "build-storybook": "build-storybook"
   },
   "repository": {
